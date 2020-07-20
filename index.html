@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+
+    <style ref="stylesheet" type="text/css">
+        html, body {
+            background: linear-gradient(124deg, orange , yellow, green, cyan, blue, violet);
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: 1800% 1800%;
+            animation: rainbow 18s ease infinite;
+        }
+        #costsTable {
+            margin: 1rem auto;
+            border-spacing: 20px;
+        }
+
+        #costsTable td {
+            border: 1px solid #4e5c8e;
+            padding: 0.5rem 1rem;
+            font-size: 1.3rem;
+            width: 120px;
+            background: #ffffff;
+            background: linear-gradient(124deg, orange , yellow, green, cyan, blue, violet);
+            background-size: 1800% 1800%;
+            animation: ;
+            animation-direction: reverse;
+            border-radius: 100%;
+            text-align: center;
+            font-family: 'Ranchers', cursive;
+            color: #f900ff;
+            text-shadow: 0 1px 5px #000;
+
+        }
+        #costsTable tr:nth-child(2n) td{
+            animation: rainbow 2s ease infinite, zoom 2s ease infinite;
+        }
+
+        #costsTable tr:nth-child(2n+1) td{
+            animation: rainbow 2s ease infinite, zoom 2s ease infinite;
+            animation-direction: reverse;
+            animation-delay: 1s;
+        }
+
+        @keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+
+
+        @keyframes zoom {
+            0%{transform: scale(0.8) rotate(-20deg)}
+            50%{transform: scale(1.2) rotate(20deg)}
+            100%{transform: scale(0.8) rotate(-20deg)}
+        }
+    </style>
+</head>
+<body>
+
+<table id="costsTable"> </table>
+
+<script type="text/javascript">
+    const coastsTotal = 279720
+    const dayStayMap = {
+        marv: 8,
+        marv2: 8,
+        marv3: 8,
+        lulu69: 8,
+        tina: 8,
+        palle: 8,
+        paula: 4,
+        joshi: 4,
+        alex: 4,
+    }
+    const totalDays = Object.values(dayStayMap).reduce((accumulator, current) => {
+        return accumulator + current
+    }, 0)
+
+    const costsPerDay = coastsTotal / totalDays
+    const table = document.getElementById('costsTable')
+
+    Object.keys(dayStayMap).forEach((name) => {
+        const costs = dayStayMap[name] * costsPerDay
+        const elementRow = document.createElement('tr')
+        table.appendChild(elementRow)
+
+        const nameTd = document.createElement('td')
+        const valueTd = document.createElement('td')
+        nameTd.innerText = name
+        valueTd.innerText = `${(Math.round(costs) / 100)}€`
+        elementRow.appendChild(nameTd);
+        elementRow.appendChild(valueTd);
+    })
+</script>
+</body>
+</html>
